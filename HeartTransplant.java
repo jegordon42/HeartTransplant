@@ -39,8 +39,16 @@ public class HeartTransplant {
      *          -1 if there is not enough space to insert p into array
      */
     public int addPerson(Person p, int arrayIndex) {
-
-        // WRITE YOUR CODE HERE
+        if( arrayIndex < 0 || arrayIndex >= listOfPatients.length){
+            return -1;
+        }
+        
+        try{
+            listOfPatients[arrayIndex] = p;
+        }catch(Exceptiojn e){
+            return -1;
+        }
+        return 0;
     }
 
     /*
@@ -56,8 +64,22 @@ public class HeartTransplant {
      * Returns the number of patients read from file
      */
     public int readPersonsFromFile(int numberOfLines) {
+        Person[] patients = new Person[numberOfLines];
 
-        // WRITE YOUR CODE HERE
+        try {
+            File myObj = new File(args[1]);
+            Scanner myReader = new Scanner(myObj);
+            while (myReader.hasNextLine()) {
+                String data = myReader.nextLine();
+
+                String[] dataValues = data.split(' ')
+                System.out.println(data);
+            }
+            myReader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
     }
 
     /*
