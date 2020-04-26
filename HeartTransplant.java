@@ -25,8 +25,9 @@ public class HeartTransplant {
      * Initializes all instance variables to null.
      */
     public HeartTransplant() {
-        
-        // WRITE YOUR CODE HERE
+        this.listOfPatients = null;
+        this.survivabilityByAge = null;
+        this.survivabilityByCause = null;
     }
 
     /* ------ Methods  -------- */
