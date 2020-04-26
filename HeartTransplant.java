@@ -64,14 +64,14 @@ public class HeartTransplant {
      * Returns the number of patients read from file
      */
     public int readPersonsFromFile(int numberOfLines) {
-        Person[] patients = new Person[numberOfLines];
+        listOfPatients = new Person[numberOfLines];
 
-        IntStream.range(0, numberOfLines).forEach(i -> {
+        for(int i = 0 ; i < numberOfLines ; i ++){
             String data = StdIn.readLine();
             String[] dataValues = data.split(' ');
             Person p = new Person(dataValues[0],dataValues[1],dataValues[2],dataValues[3],dataValues[4],dataValues[5],dataValues[6]);
             addPerson(p);
-        })
+        }
 
         return numberOfLines;
 
@@ -89,8 +89,15 @@ public class HeartTransplant {
      * Returns the number of survivabilities rates read from file
      */
     public int readSurvivabilityRateByAgeFromFile (int numberOfLines) {
+        survivabilityByAge = new SurvivabilityByAge[numberOfLines]; 
+        for(int i = 0 ; i < numberOfLines ; i ++){
+            String data = StdIn.readLine();
+            String[] dataValues = data.split(' ');
+            SurvivabilityByAge s = new SurvivabilityByAge(dataValues[0], dataValues[1], dataValues[2]);
+            survivabilityByAge[i] = s;
+        }
 
-        listOfPatients = new 
+        return numberOfLines;
     }
 
     /*
@@ -105,8 +112,15 @@ public class HeartTransplant {
      * Returns the number of survivabilities rates read from file
      */
     public int readSurvivabilityRateByCauseFromFile (int numberOfLines) {
+        survivabilityByCause = new SurvivabilityByCause[numberOfLines]; 
+        for(int i = 0 ; i < numberOfLines ; i ++){
+            String data = StdIn.readLine();
+            String[] dataValues = data.split(' ');
+            SurvivabilityByCause s = new SurvivabilityByCause(dataValues[0], dataValues[1], dataValues[2]);
+            survivabilityByCause[i] = s;
+        }
 
-        // WRITE YOUR CODE HERE
+        return numberOfLines;
     }
     
     /*
