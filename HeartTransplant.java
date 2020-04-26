@@ -66,20 +66,15 @@ public class HeartTransplant {
     public int readPersonsFromFile(int numberOfLines) {
         Person[] patients = new Person[numberOfLines];
 
-        try {
-            File myObj = new File(args[1]);
-            Scanner myReader = new Scanner(myObj);
-            while (myReader.hasNextLine()) {
-                String data = myReader.nextLine();
+        IntStream.range(0, numberOfLines).forEach(i -> {
+            String data = StdIn.readLine();
+            String[] dataValues = data.split(' ');
+            Person p = new Person(dataValues[0],dataValues[1],dataValues[2],dataValues[3],dataValues[4],dataValues[5],dataValues[6]);
+            addPerson(p);
+        })
 
-                String[] dataValues = data.split(' ')
-                System.out.println(data);
-            }
-            myReader.close();
-        } catch (FileNotFoundException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
+        return numberOfLines;
+
     }
 
     /*
