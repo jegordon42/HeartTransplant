@@ -213,8 +213,25 @@ public class HeartTransplant {
      * equal to the parameter cause.
      */ 
     public Person[] getPatientsByHeartConditionCause(int cause) {
+        int count = 0;
+        for(int i = 0; i < listOfPatients.length; i++)
+        {
+            if(listOfPatients[i].cause == cause)
+                count++;
+        }
+        
+        if(count == 0)
+            return null;
 
-        // WRITE YOUR CODE HERE
+        int index = 0;
+        Person[] patientsByHeartConditionCause = new Person[count];
+        for(int i = 0; i < listOfPatients.length; i++)
+        {
+            if(listOfPatients[i].cause == cause)
+                patientsByHeartConditionCause[index++] = listOfPatients[i];
+        }
+
+        return patientsByHeartConditionCause;
     }
 
     /*
