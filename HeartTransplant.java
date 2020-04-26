@@ -65,10 +65,15 @@ public class HeartTransplant {
      */
     public int readPersonsFromFile(int numberOfLines) {
         listOfPatients = new Person[numberOfLines];
-
+        StdIn.readLine();
         for(int i = 0 ; i < numberOfLines ; i ++){
             String data = StdIn.readLine();
-            String[] dataValues = data.split(" ");
+            // System.out.println(data);
+            String[] dataValues = data.split("  ");
+            for(int j = 0; j < dataValues.length ; j++){
+                dataValues[j] = dataValues[j].strip();
+            }
+                
             Person p = new Person(Integer.parseInt(dataValues[0]),Integer.parseInt(dataValues[1]),Integer.parseInt(dataValues[2]),Integer.parseInt(dataValues[3]),Integer.parseInt(dataValues[4]),Integer.parseInt(dataValues[5]),Integer.parseInt(dataValues[6]));
             addPerson(p, i);
         }
@@ -90,10 +95,21 @@ public class HeartTransplant {
      */
     public int readSurvivabilityRateByAgeFromFile (int numberOfLines) {
         survivabilityByAge = new SurvivabilityByAge[numberOfLines]; 
+        StdIn.readLine();
         for(int i = 0 ; i < numberOfLines ; i ++){
-            String data = StdIn.readLine();
+            String data = StdIn.readLine().strip();
+            // System.out.println(data);
             String[] dataValues = data.split(" ");
-            SurvivabilityByAge s = new SurvivabilityByAge(Integer.parseInt(dataValues[0]), Integer.parseInt(dataValues[1]), Integer.parseInt(dataValues[2]));
+            int count = 0;
+            for(int j = 0; j < dataValues.length; j++){
+                if(dataValues[j].equals("")){
+                    continue;
+                }
+                // System.out.println(" "+dataValues[j]);
+                dataValues[count] = dataValues[j].strip();
+                count++;
+            }
+            SurvivabilityByAge s = new SurvivabilityByAge(Integer.parseInt(dataValues[0]), Integer.parseInt(dataValues[1]), Double.parseDouble(dataValues[2]));
             survivabilityByAge[i] = s;
         }
 
@@ -113,10 +129,20 @@ public class HeartTransplant {
      */
     public int readSurvivabilityRateByCauseFromFile (int numberOfLines) {
         survivabilityByCause = new SurvivabilityByCause[numberOfLines]; 
+        StdIn.readLine();
         for(int i = 0 ; i < numberOfLines ; i ++){
-            String data = StdIn.readLine();
+            String data = StdIn.readLine().strip();
             String[] dataValues = data.split(" ");
-            SurvivabilityByCause s = new SurvivabilityByCause(Integer.parseInt(dataValues[0]), Integer.parseInt(dataValues[1]), Integer.parseInt(dataValues[2]));
+            int count = 0;
+            for(int j = 0; j < dataValues.length; j++){
+                if(dataValues[j].equals("")){
+                    continue;
+                }
+                // System.out.println(" "+dataValues[j]);
+                dataValues[count] = dataValues[j].strip();
+                count++;
+            }
+            SurvivabilityByCause s = new SurvivabilityByCause(Integer.parseInt(dataValues[0]), Integer.parseInt(dataValues[1]), Double.parseDouble(dataValues[2]));
             survivabilityByCause[i] = s;
         }
 
