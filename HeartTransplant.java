@@ -272,7 +272,7 @@ public class HeartTransplant {
             return listOfPatients;
         }
 
-        ArrayList<Person> returnList = new ArrayList<Person>();
+        Person[] returnList = new Person[numberOfHearts];
         int i = 0;
 
         survivabilityByCause.forEach(c -> {
@@ -280,13 +280,13 @@ public class HeartTransplant {
             Person[] peeps = getPatientsByHeartConditionCause(c.getCause());
 
             while(i <= numberOfHearts && pCount < peeps.length){
-                returnList.add(peeps[pCount]);
+                returnList[i] = peeps[pCount];
                 pCount++;
                 i++;
             }
         });
         
-        return returnList.toArray();
+        return returnList;
     }
 
     /*
