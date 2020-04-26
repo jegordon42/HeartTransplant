@@ -265,8 +265,28 @@ public class HeartTransplant {
      * persons from the listOfPatients array.
      */ 
     public Person[] match(int numberOfHearts) {
+        if(numberOfHearts == 0){
+            return null;
+        }
+        if(numberOfHearts >= listOfPatients.length){
+            return listOfPatients;
+        }
 
-        // WRITE YOUR CODE HERE
+        ArrayList<Person> returnList = new ArrayList<Person>();
+        int i = 0;
+
+        survivabilityByCause.forEach(c -> {
+            int pCount = 0;
+            Person[] peeps = getPatientsByHeartConditionCause(c.getCause());
+
+            while(i <= numberOfHearts && pCount < peeps.length){
+                returnList.add(peeps[pCount]);
+                pCount++;
+                i++;
+            }
+        });
+        
+        return returnList.toArray();
     }
 
     /*
