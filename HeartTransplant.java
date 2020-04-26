@@ -73,7 +73,7 @@ public class HeartTransplant {
      */
     public int readSurvivabilityRateByAgeFromFile (int numberOfLines) {
 
-        // WRITE YOUR CODE HERE
+        listOfPatients = new 
     }
 
     /*
@@ -125,8 +125,25 @@ public class HeartTransplant {
      * parameter age.
      */ 
     public Person[] getPatientsWithAgeAbove(int age) {
+        int count = 0;
+        for(int i = 0; i < listOfPatients.length; i++)
+        {
+            if(listOfPatients[i].age > age)
+                count++;
+        }
+        
+        if(count == 0)
+            return null;
 
-        // WRITE YOUR CODE HERE
+        int index = 0;
+        Person[] patientsWithAgeAbove = new Person[count];
+        for(int i = 0; i < listOfPatients.length; i++)
+        {
+            if(listOfPatients[i].age > age)
+                patientsWithAgeAbove[index++] = listOfPatients[i];
+        }
+
+        return patientsWithAgeAbove;
     }
     
     /*
@@ -141,8 +158,25 @@ public class HeartTransplant {
      * equal to the parameter state.
      */ 
     public Person[] getPatientsByStateOfHealth(int state) {
+        int count = 0;
+        for(int i = 0; i < listOfPatients.length; i++)
+        {
+            if(listOfPatients[i].stateOfHealth == state)
+                count++;
+        }
+        
+        if(count == 0)
+            return null;
 
-        // WRITE YOUR CODE HERE
+        int index = 0;
+        Person[] patientsByStateOfHealth = new Person[count];
+        for(int i = 0; i < listOfPatients.length; i++)
+        {
+            if(listOfPatients[i].stateOfHealth == state)
+                patientsByStateOfHealth[index++] = listOfPatients[i];
+        }
+
+        return patientsByStateOfHealth;
     }
 
     /*
