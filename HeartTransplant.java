@@ -45,7 +45,7 @@ public class HeartTransplant {
         
         try{
             listOfPatients[arrayIndex] = p;
-        }catch(Exceptiojn e){
+        }catch(Exception e){
             return -1;
         }
         return 0;
@@ -68,9 +68,9 @@ public class HeartTransplant {
 
         for(int i = 0 ; i < numberOfLines ; i ++){
             String data = StdIn.readLine();
-            String[] dataValues = data.split(' ');
-            Person p = new Person(dataValues[0],dataValues[1],dataValues[2],dataValues[3],dataValues[4],dataValues[5],dataValues[6]);
-            addPerson(p);
+            String[] dataValues = data.split(" ");
+            Person p = new Person(Integer.parseInt(dataValues[0]),Integer.parseInt(dataValues[1]),Integer.parseInt(dataValues[2]),Integer.parseInt(dataValues[3]),Integer.parseInt(dataValues[4]),Integer.parseInt(dataValues[5]),Integer.parseInt(dataValues[6]));
+            addPerson(p, i);
         }
 
         return numberOfLines;
@@ -92,8 +92,8 @@ public class HeartTransplant {
         survivabilityByAge = new SurvivabilityByAge[numberOfLines]; 
         for(int i = 0 ; i < numberOfLines ; i ++){
             String data = StdIn.readLine();
-            String[] dataValues = data.split(' ');
-            SurvivabilityByAge s = new SurvivabilityByAge(dataValues[0], dataValues[1], dataValues[2]);
+            String[] dataValues = data.split(" ");
+            SurvivabilityByAge s = new SurvivabilityByAge(Integer.parseInt(dataValues[0]), Integer.parseInt(dataValues[1]), Integer.parseInt(dataValues[2]));
             survivabilityByAge[i] = s;
         }
 
@@ -115,8 +115,8 @@ public class HeartTransplant {
         survivabilityByCause = new SurvivabilityByCause[numberOfLines]; 
         for(int i = 0 ; i < numberOfLines ; i ++){
             String data = StdIn.readLine();
-            String[] dataValues = data.split(' ');
-            SurvivabilityByCause s = new SurvivabilityByCause(dataValues[0], dataValues[1], dataValues[2]);
+            String[] dataValues = data.split(" ");
+            SurvivabilityByCause s = new SurvivabilityByCause(Integer.parseInt(dataValues[0]), Integer.parseInt(dataValues[1]), Integer.parseInt(dataValues[2]));
             survivabilityByCause[i] = s;
         }
 
@@ -159,7 +159,7 @@ public class HeartTransplant {
         int count = 0;
         for(int i = 0; i < listOfPatients.length; i++)
         {
-            if(listOfPatients[i].age > age)
+            if(listOfPatients[i].getAge()> age)
                 count++;
         }
         
@@ -170,7 +170,7 @@ public class HeartTransplant {
         Person[] patientsWithAgeAbove = new Person[count];
         for(int i = 0; i < listOfPatients.length; i++)
         {
-            if(listOfPatients[i].age > age)
+            if(listOfPatients[i].getAge()> age)
                 patientsWithAgeAbove[index++] = listOfPatients[i];
         }
 
@@ -192,7 +192,7 @@ public class HeartTransplant {
         int count = 0;
         for(int i = 0; i < listOfPatients.length; i++)
         {
-            if(listOfPatients[i].stateOfHealth == state)
+            if(listOfPatients[i].getStateOfHealth() == state)
                 count++;
         }
         
@@ -203,7 +203,7 @@ public class HeartTransplant {
         Person[] patientsByStateOfHealth = new Person[count];
         for(int i = 0; i < listOfPatients.length; i++)
         {
-            if(listOfPatients[i].stateOfHealth == state)
+            if(listOfPatients[i].getStateOfHealth() == state)
                 patientsByStateOfHealth[index++] = listOfPatients[i];
         }
 
@@ -225,7 +225,7 @@ public class HeartTransplant {
         int count = 0;
         for(int i = 0; i < listOfPatients.length; i++)
         {
-            if(listOfPatients[i].cause == cause)
+            if(listOfPatients[i].getCause() == cause)
                 count++;
         }
         
@@ -236,7 +236,7 @@ public class HeartTransplant {
         Person[] patientsByHeartConditionCause = new Person[count];
         for(int i = 0; i < listOfPatients.length; i++)
         {
-            if(listOfPatients[i].cause == cause)
+            if(listOfPatients[i].getCause() == cause)
                 patientsByHeartConditionCause[index++] = listOfPatients[i];
         }
 
@@ -275,7 +275,8 @@ public class HeartTransplant {
         Person[] returnList = new Person[numberOfHearts];
         int i = 0;
 
-        survivabilityByCause.forEach(c -> {
+        for(int j = 0 ; j < survivabilityByCause.length ; j++){
+            SurvivabilityByCause c = survivabilityByCause[i];
             int pCount = 0;
             Person[] peeps = getPatientsByHeartConditionCause(c.getCause());
 
@@ -284,7 +285,7 @@ public class HeartTransplant {
                 pCount++;
                 i++;
             }
-        });
+        }
         
         return returnList;
     }
